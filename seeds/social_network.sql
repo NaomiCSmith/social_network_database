@@ -16,8 +16,7 @@ CREATE TABLE posts (
   title text,
   content text,
   views int,
-  account_id int,
-  constraint fk_account foreign key(account_id) references accounts(id) on delete cascade
+  account_id int
 );
 
 INSERT INTO accounts (username, email_address) VALUES ('naomismith', 'naomismith@gmail.com');
