@@ -14,17 +14,30 @@ def test_all(db_connection):
 def test_find(db_connection):
     db_connection.seed("seeds/social_network.sql")
     repository = AccountRepository(db_connection)
-    pass
+    account = repository.find(3)
+    assert account == Account(3, "mickeymouse12", "mickeymickeymouse@hotmail.com")
 
 def test_create(db_connection):
     db_connection.seed("seeds/social_network.sql")
     repository = AccountRepository(db_connection)
-    pass
+    repository.create(Account(None, "snoopy", "lazysnoopy123@aol.com"))
+    result = repository.all()
+    assert result == [
+        Account(1, "naomismith", "naomismith@gmail.com"),
+        Account(2, "bilbobaggins", "bilbohatestravel@yahoo.co.uk"),
+        Account(3, "mickeymouse12", "mickeymickeymouse@hotmail.com"),
+        Account(4, "snoopy", "lazysnoopy123@aol.com")
+    ]
 
 def test_delete(db_connection):
     db_connection.seed("seeds/social_network.sql")
     repository = AccountRepository(db_connection)
-    pass
+    repository.delete(1)
+    result = repository.all()
+    assert result == [
+        Account(2, "bilbobaggins", "bilbohatestravel@yahoo.co.uk"),
+        Account(3, "mickeymouse12", "mickeymickeymouse@hotmail.com")
+    ]
 
 def test_update(db_connection):
     db_connection.seed("seeds/social_network.sql")
