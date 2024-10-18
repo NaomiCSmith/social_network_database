@@ -23,3 +23,6 @@ class PostRepository():
         self._connection.execute('DELETE FROM posts WHERE id = %s', [post_id])
         return None
     
+    def update(self, post):
+        self._connection.execute('UPDATE posts SET title = %s, content = %s WHERE id = %s',[post.title, post.content, post.id])
+    

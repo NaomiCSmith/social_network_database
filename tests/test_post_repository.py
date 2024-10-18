@@ -37,3 +37,15 @@ def test_delete(db_connection):
         Post(2, 'How to have the best second breakfast', 'Do not let anyone else in!', 5, 2),
         Post(3, 'Plutos birthday', 'Hey everybody! It is his birthday today!', 2, 3)
     ]
+
+def test_update(db_connection):
+    db_connection.seed("seeds/social_network.sql")
+    repository = PostRepository(db_connection)
+    post = repository.find(1)
+    post.title = "New title"
+    assert repository.update(post) is None
+    assert repository.all() == [
+        Post(1, 'New title', 'There is not much to say...', 1, 1),
+        Post(2, 'How to have the best second breakfast', 'Do not let anyone else in!', 5, 2),
+        Post(3, 'Plutos birthday', 'Hey everybody! It is his birthday today!', 2, 3)
+    ]
