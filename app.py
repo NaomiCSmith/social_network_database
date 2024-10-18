@@ -1,5 +1,6 @@
 from lib.database_connection import DatabaseConnection
-from lib.artist_repository import ArtistRepository
+from lib.post_repository import *
+from lib.account_repository import *
 
 
 # Connect to the database
@@ -7,12 +8,19 @@ connection = DatabaseConnection()
 connection.connect()
 
 # Seed with some seed data
-connection.seed("seeds/music_library.sql")
+connection.seed("seeds/social_network.sql")
 
-# Retrieve all artists
-artist_repository = ArtistRepository(connection)
-artists = artist_repository.all()
+# Retrieve all posts
+post_repository = PostRepository(connection)
+posts = post_repository.all()
 
 # List them out
-for artist in artists:
-    print(artist)
+for post in posts:
+    print(post)
+
+# List out accounts
+
+account_repository = AccountRepository(connection)
+accounts = account_repository.all()
+for account in accounts:
+    print(account)
