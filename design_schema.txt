@@ -46,6 +46,7 @@ Table: posts
 id: SERIAL PRIMARY KEY
 title: text
 content: text
+views: int
 
 
 1. Can one account have many posts? (Yes)
